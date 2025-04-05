@@ -13,7 +13,7 @@ module Kolom
     # Reserved keywords
     "ও" => "and", # and
     "ভাঙ্গা" => "break", # break
-    "কেস" => "case", # case
+    "ঘটনা" => "case", # case
     "শ্রেণী" => "class", # class
     "সংজ্ঞা" => "def", # def
     "সংজ্ঞায়িত?" => "defined?", # defined?
@@ -41,11 +41,13 @@ module Kolom
     "অসংজ্ঞায়িত" => "undef", # undef
     "যদিনা" => "unless", # unless
     "যতক্ষণনা" => "until", # until
-    "যখন" => "while", # while
+    "যখন" => "when", # when
+    "যতক্ষণ" => "while", # while
     "প্রদান" => "yield", # yield
 
     # Common method names
-    "লেখো" => "print", # puts
+    "লেখো" => "print", #print
+    "বল" => "puts", # puts
     "দৈর্ঘ্য" => "length", # length
     "উল্টো" => "reverse", # reverse
     "সংযোগ" => "concat",             # concat
