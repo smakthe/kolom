@@ -35,7 +35,6 @@ module Kolom
     'ফেরত' => 'return',       # return
     'স্বয়ং' => 'self',        # self
     'অতি' => 'super',       # super
-    'তাহলে' => 'then',        # then
     'সত্য' => 'true',         # true
     'অসংজ্ঞায়িত' => 'undef',   # undef
     'যদিনা' => 'unless',      # unless
