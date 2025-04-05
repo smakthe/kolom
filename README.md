@@ -33,7 +33,7 @@ kolom path/to/your/script.kl
 Or execute Kolom code directly:
 
 ```bash
-kolom -e 'লেখো("হ্যালো বিশ্ব!")'
+kolom -e 'লেখো "নমস্কার বিশ্ব!"'
 ```
 
 ### Using the REPL
@@ -93,8 +93,8 @@ Kolom provides Bengali equivalents for common Ruby keywords and methods:
 
 | Kolom | Ruby |
 |---------|------|
+| লেখো | print |
 | দৈর্ঘ্য | length |
-| উল্টো | reverse |
 | সংযোগ | concat |
 | বিভাগ | split |
 | নিবেশ | push |
