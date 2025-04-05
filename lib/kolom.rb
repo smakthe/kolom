@@ -1,5 +1,4 @@
-# frozen_string_literal: true
-
+require "json"
 require "stringio"
 require "parser"
 require "unparser"
@@ -9,78 +8,9 @@ module Kolom
   VERSION = ENV["KOLUM_VERSION"] || "0.1.0"
 
   # Bengali translations of Ruby keywords
-  KEYWORDS = {
-    # Reserved keywords
-    "ও" => "and", # and
-    "ভাঙ্গা" => "break", # break
-    "ঘটনা" => "case", # case
-    "শ্রেণী" => "class", # class
-    "সংজ্ঞা" => "def", # def
-    "সংজ্ঞায়িত?" => "defined?", # defined?
-    "কর" => "do", # do
-    "নইলে" => "else", # else
-    "অন্যথা" => "elsif", # elsif
-    "শেষ" => "end", # end
-    "নিশ্চিত" => "ensure", # ensure
-    "মিথ্যা" => "false", # false
-    "জন্য" => "for", # for
-    "যদি" => "if", # if
-    "মধ্যে" => "in", # in
-    "কক্ষ" => "module", # module
-    "পরবর্তী" => "next",      # next
-    "শূন্য" => "nil",         # nil
-    "না" => "not",           # not
-    "বা" => "or",            # or
-    "পুনরায়" => "redo",       # redo
-    "উদ্ধার" => "rescue",      # rescue
-    "পুনঃচেষ্টা" => "retry", # retry
-    "ফেরত" => "return", # return
-    "স্বয়ং" => "self", # self
-    "অতি" => "super", # super
-    "সত্য" => "true", # true
-    "অসংজ্ঞায়িত" => "undef", # undef
-    "যদিনা" => "unless", # unless
-    "যতক্ষণনা" => "until", # until
-    "যখন" => "when", # when
-    "যতক্ষণ" => "while", # while
-    "প্রদান" => "yield", # yield
-
-    # Common method names
-    "লেখো" => "print", #print
-    "বলো" => "puts", # puts
-    "দৈর্ঘ্য" => "length", # length
-    "উল্টো" => "reverse", # reverse
-    "সংযোগ" => "concat",             # concat
-    "বিভাগ" => "split",              # split
-    "ছাঁট" => "strip",             # strip
-    "বদল" => "gsub",               # gsub
-    "অন্তর্ভুক্ত?" => "include?", # include?
-    "আকার" => "size", # size
-    "নিবেশ" => "push", # push
-    "নিরসন" => "pop", # pop
-    "প্রাগ্নিবেশ" => "shift", # shift
-    "প্রাগ্নিরসন" => "unshift", # unshift
-    "সম্বদ্ধ" => "join", # join
-    "সাজানো" => "sort",            # sort
-    "সূচক" => "index",             # index
-    "নির্বাচন" => "select", # select
-    "বাতিল" => "reject",           # reject
-    "প্রয়োগ" => "map",            # map
-    "সংগ্রহ" => "collect", # collect
-    "সমতল" => "flatten",           # flatten
-    "চাবি" => "keys",              # keys
-    "মান" => "values",             # values
-    "চাবি_আছে?" => "has_key?",     # has_key?
-    "চাবি?" => "key?",             # key?
-    "মান_আছে?" => "has_value?", # has_value?
-    "আন" => "fetch",              # fetch
-    "নাশ" => "delete",            # delete
-    "একত্র" => "merge",             # merge
-    "প্রত্যেক" => "each",           # each
-    "প্রত্যেক_চাবি" => "each_key",   # each_key
-    "প্রত্যেক_মান" => "each_value",  # each_value
-    "খালি?" => "empty?" # empty?
-  }.freeze
+  keymap_filepath = File.join(File.dirname(__FILE__), "kolom/keymap.json")
+  keymap_file = File.open(keymap_filepath)
+  KEYWORDS = JSON.load(keymap_file).freeze
 
   # Inverse mapping for translating back
   RUBY_KEYWORDS = KEYWORDS.invert
@@ -92,25 +22,25 @@ module Kolom
     def initialize
       @env = {}
       @output = StringIO.new
-      setup_global_environment
+      # setup_global_environment
     end
 
     def setup_global_environment
       # Add standard library functions and objects to the environment
-      # @env['লেখো'] = lambda do |*args|
-      #   @output.puts args.join(' ')
-      # end
+      @env['লেখো'] = lambda do |*args|
+        @output.puts args.join(' ')
+      end
 
-      # @env['ইনপুট'] = lambda do |prompt = nil|
-      #   @output.puts prompt if prompt
-      #   gets.chomp
-      # end
+      @env['ইনপুট'] = lambda do |prompt = nil|
+        @output.puts prompt if prompt
+        gets.chomp
+      end
 
       # Add numerical operations
-      # @env['যোগ_করুন'] = lambda { |a, b| a + b }
-      # @env['বিয়োগ_করুন'] = lambda { |a, b| a - b }
-      # @env['গুণ_করুন'] = lambda { |a, b| a * b }
-      # @env['ভাগ_করুন'] = lambda { |a, b| a / b }
+      @env['যোগ_করুন'] = lambda { |a, b| a + b }
+      @env['বিয়োগ_করুন'] = lambda { |a, b| a - b }
+      @env['গুণ_করুন'] = lambda { |a, b| a * b }
+      @env['ভাগ_করুন'] = lambda { |a, b| a / b }
     end
 
     def evaluate(code)
