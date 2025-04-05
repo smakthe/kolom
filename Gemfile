@@ -6,8 +6,6 @@ source "https://rubygems.org"
 gem "bundler"
 gem "dotenv"
 gem "irb"
-gem 'parser'
 gem "rake"
-gem "unparser"
 
 gem "rubocop"
