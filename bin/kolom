@@ -9,7 +9,7 @@ require "kolom/repl"
 interpreter = Kolom::Interpreter.new
 if ARGV.empty?
   # Simple REPL (Read-Eval-Print Loop)
-  puts "#{ENV["NAME"]} v#{ENV["KOLOM_VERSION"]} - Bengali Scripting REPL"
+  puts "কলম v#{ENV["KOLOM_VERSION"]} - Bengali Scripting REPL"
   puts "Type 'বাহির' or Ctrl+D to exit."
   repl = Kolom::REPL.new
   repl.start

@@ -6,7 +6,7 @@ require "dotenv"
 Dotenv.load
 
 Gem::Specification.new do |spec|
-  spec.name = ENV["NAME"]
+  spec.name = "kolom"
   spec.version = ENV["KOLUM_VERSION"]
   spec.authors = ["smakthe"]
   spec.email = ["scmakra99@gmail.com"]
