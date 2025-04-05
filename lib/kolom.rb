@@ -40,11 +40,11 @@ module Kolom
     'অসংজ্ঞায়িত' => 'undef',   # undef
     'যদিনা' => 'unless',      # unless
     'যতক্ষণনা' => 'until',     # until
-    'যখন' => 'when',         # when
     'যখন' => 'while',        # while
     'প্রদান' => 'yield',      # yield
     
     # Common method names
+    'লেখো' => 'print',          # puts
     'দৈর্ঘ্য' => 'length',           # length
     'উল্টো' => 'reverse',         # reverse
     'সংযোগ' => 'concat',             # concat
@@ -93,20 +93,20 @@ module Kolom
     
     def setup_global_environment
       # Add standard library functions and objects to the environment
-      @env['লেখা'] = lambda do |*args|
-        @output.puts args.join(' ')
-      end
+      # @env['লেখো'] = lambda do |*args|
+      #   @output.puts args.join(' ')
+      # end
       
-      @env['ইনপুট'] = lambda do |prompt = nil|
-        @output.puts prompt if prompt
-        gets.chomp
-      end
+      # @env['ইনপুট'] = lambda do |prompt = nil|
+      #   @output.puts prompt if prompt
+      #   gets.chomp
+      # end
       
       # Add numerical operations
-      @env['যোগ_করুন'] = lambda { |a, b| a + b }
-      @env['বিয়োগ_করুন'] = lambda { |a, b| a - b }
-      @env['গুণ_করুন'] = lambda { |a, b| a * b }
-      @env['ভাগ_করুন'] = lambda { |a, b| a / b }
+      # @env['যোগ_করুন'] = lambda { |a, b| a + b }
+      # @env['বিয়োগ_করুন'] = lambda { |a, b| a - b }
+      # @env['গুণ_করুন'] = lambda { |a, b| a * b }
+      # @env['ভাগ_করুন'] = lambda { |a, b| a / b }
     end
     
     def evaluate(code)

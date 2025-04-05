@@ -33,7 +33,7 @@ kolom path/to/your/script.kl
 Or execute Kolom code directly:
 
 ```bash
-kolom -e 'লেখা("হ্যালো বিশ্ব!")'
+kolom -e 'লেখো("হ্যালো বিশ্ব!")'
 ```
 
 ### Using the REPL
@@ -57,7 +57,7 @@ Here's a simple example of a Kolom program:
   শেষ
 
   সংজ্ঞা পরিচয়_দাও
-    লেখা("আমার নাম #{@নাম} এবং আমার বয়স #{@বয়স} বছর।")
+    লেখো("আমার নাম #{@নাম} এবং আমার বয়স #{@বয়স} বছর।")
   শেষ
 শ্রেণী
 
