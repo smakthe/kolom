@@ -1,0 +1,52 @@
+#!/usr/bin/env ruby
+
+$LOAD_PATH.unshift File.expand_path('../lib', __dir__) unless $LOAD_PATH.include?(File.expand_path('../lib', __dir__))
+
+
+require 'kolom'
+
+if ARGV.empty?
+  # Simple REPL (Read-Eval-Print Loop)
+  puts "Kolom v#{Kolom::VERSION} - Bengali Scripting REPL"
+  puts "Type 'বাহির' or Ctrl+D to exit."
+  runtime = Kolom::Runtime.new # Persistent runtime for REPL session
+  loop do
+    print "kolom> "
+    line = $stdin.gets
+    break if line.nil? # Exit on Ctrl+D
+    line.strip!
+    break if line == "বাহির"
+    next if line.empty?
+
+    begin
+      # Use the internal execute_line for direct execution in REPL context
+      # Or runtime.run(line) if you want each line self-contained
+      result = runtime.send(:execute_line, line) # Access private method for REPL
+      # Optionally print result if evaluate returns something other than nil
+      # puts "=> #{result.inspect}" if result
+    rescue => e
+      puts "ত্রুটি: #{e.message}"
+      # puts e.backtrace.join("\n\t") # Uncomment for detailed debug info
+    end
+  end
+else
+  # Execute a file
+  interpreter = Kolom::Interpreter.new
+  if ARGV[0] == '-e'
+    code = ARGV[1]
+    result, output = interpreter.evaluate(code)
+    puts output
+    puts "=> #{result.inspect}" unless result.nil?
+  else
+    filename = ARGV[0]
+    unless File.exist?(filename)
+      puts "Error: File #{filename} not found"
+      exit 1
+    end
+    
+    code = File.read(filename)
+    result, output = interpreter.evaluate(code)
+    puts output
+    puts "=> #{result.inspect}" unless result.nil?
+  end
+end
