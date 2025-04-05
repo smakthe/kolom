@@ -5,6 +5,7 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in kolom.gemspec
 gemspec
 gem "bundler", "~> 2.6"
+gem "dotenv"
 gem "irb"
 gem "parser", "~> 3.3", ">= 3.3.7.4"
 gem "rake", "~> 13.0"

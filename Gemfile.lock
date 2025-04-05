@@ -9,6 +9,7 @@ GEM
     ast (2.4.3)
     date (3.4.1)
     diff-lcs (1.6.1)
+    dotenv (3.1.7)
     io-console (0.8.0)
     irb (1.15.2)
       pp (>= 0.6.0)
@@ -65,6 +66,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 2.6)
+  dotenv
   irb
   kolom!
   parser (~> 3.3, >= 3.3.7.4)
