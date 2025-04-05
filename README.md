@@ -1,6 +1,6 @@
-# Kolom Language
+# কলম Language
 
-Kolom is a toy scripting language that uses Bengali keywords instead of English. It's implemented as a Ruby gem and compiles to Ruby, leveraging Ruby's powerful metaprogramming capabilities.
+কলম (Kolom) is a toy scripting language that uses Bengali keywords instead of English. It's implemented as a Ruby gem and compiles to Ruby, leveraging Ruby's powerful metaprogramming capabilities.
 
 ## Installation
 
@@ -22,15 +22,15 @@ bundle install
 
 ## Usage
 
-### Running Kolom Programs
+### Running কলম Programs
 
-You can run a Kolom script file:
+You can run a কলম script file:
 
 ```bash
 kolom path/to/your/script.kl
 ```
 
-Or execute Kolom code directly:
+Or execute কলম code directly:
 
 ```bash
 kolom -e 'লেখো "নমস্কার বিশ্ব!"'
@@ -46,7 +46,7 @@ kolom
 
 ### Example Program
 
-Here's a simple example of a Kolom program:
+Here's a simple example of a কলম program:
 
 ```
 # Define a class
@@ -68,7 +68,7 @@ Here's a simple example of a Kolom program:
 
 ## Keywords and Methods
 
-Kolom provides Bengali equivalents for common Ruby keywords and methods:
+কলম provides Bengali equivalents for common Ruby keywords and methods:
 
 ### Keywords
 

@@ -47,7 +47,7 @@ module Kolom
 
     # Common method names
     "লেখো" => "print", #print
-    "বল" => "puts", # puts
+    "বলো" => "puts", # puts
     "দৈর্ঘ্য" => "length", # length
     "উল্টো" => "reverse", # reverse
     "সংযোগ" => "concat",             # concat
