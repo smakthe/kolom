@@ -1,33 +1,31 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
-$LOAD_PATH.unshift File.expand_path('../lib', __dir__) unless $LOAD_PATH.include?(File.expand_path('../lib', __dir__))
+$LOAD_PATH.unshift File.expand_path("../lib", __dir__) unless $LOAD_PATH.include?(File.expand_path("../lib", __dir__))
 
-
-require 'kolom'
+require "kolom"
 
 interpreter = Kolom::Interpreter.new
 if ARGV.empty?
   # Simple REPL (Read-Eval-Print Loop)
-  puts "Kolom v#{Kolom::VERSION} - Bengali Scripting REPL"
+  puts "Kolom v#{ENV["KOLOM_VERSION"]} - Bengali Scripting REPL"
   puts "Type 'বাহির' or Ctrl+D to exit."
   repl = Kolom::REPL.new
   repl.start
-else
+elsif ARGV[0] == "-e"
   # Execute a file
-  if ARGV[0] == '-e'
-    code = ARGV[1]
-    result, output = interpreter.evaluate(code)
-    puts output
-    puts "=> #{result.inspect}" unless result.nil?
-  else
-    filename = ARGV[0]
-    unless File.exist?(filename)
-      puts "Error: File #{filename} not found"
-      exit 1
-    end
-    code = File.read(filename)
-    result, output = interpreter.evaluate(code)
-    puts output
-    puts "=> #{result.inspect}" unless result.nil?
+  code = ARGV[1]
+  result, output = interpreter.evaluate(code)
+  puts output
+  puts "=> #{result.inspect}" unless result.nil?
+else
+  filename = ARGV[0]
+  unless File.exist?(filename)
+    puts "Error: File #{filename} not found"
+    exit 1
   end
+  code = File.read(filename)
+  result, output = interpreter.evaluate(code)
+  puts output
+  puts "=> #{result.inspect}" unless result.nil?
 end

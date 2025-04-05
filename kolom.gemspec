@@ -1,10 +1,8 @@
 # frozen_string_literal: true
 
-require_relative "lib/kolom/version"
-
 Gem::Specification.new do |spec|
   spec.name = "kolom"
-  spec.version = Kolom::VERSION
+  spec.version = ENV["KOLUM_VERSION"] || "0.1.0"
   spec.authors = ["smakthe"]
   spec.email = ["scmakra99@gmail.com"]
 
@@ -23,23 +21,12 @@ Gem::Specification.new do |spec|
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
   spec.files = IO.popen(%w[git ls-files -z], chdir: __dir__, err: IO::NULL) do |ls|
-    EXCLUDED_DIRECTORIES = %w[bin/ test/ spec/ features/ .git appveyor Gemfile].freeze
+    excluded_directories = %w[bin/ test/ spec/ features/ .git appveyor Gemfile].freeze
     ls.readlines("\x0", chomp: true).reject do |f|
-      (f == File.basename(__FILE__)) || f.start_with?(*EXCLUDED_DIRECTORIES)
+      (f == File.basename(__FILE__)) || f.start_with?(*excluded_directories)
     end
   end
   spec.bindir = "bin"
   spec.executables = spec.files.grep(%r{\Abin/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
-
-  # Uncomment to register a new dependency of your gem
-  spec.add_dependency "parser", "~> 3.0"
-  spec.add_dependency "unparser", "~> 0.6"
-  
-  spec.add_development_dependency "bundler", "~> 2.0"
-  spec.add_development_dependency "rake", "~> 13.0"
-  spec.add_development_dependency "rspec", "~> 3.0"
-
-  # For more information and examples about making a new gem, check out our
-  # guide at: https://bundler.io/guides/creating_gem.html
 end
