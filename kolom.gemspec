@@ -6,12 +6,12 @@ require "dotenv"
 Dotenv.load
 
 Gem::Specification.new do |spec|
-  spec.name = "kolom"
+  spec.name = ENV["NAME"]
   spec.version = ENV["KOLUM_VERSION"]
   spec.authors = ["smakthe"]
   spec.email = ["scmakra99@gmail.com"]
 
-  spec.summary = "Kolom - A Bengali scripting language"
+  spec.summary = "কলম - A Bengali scripting language"
   spec.description = "A toy scripting language with Bengali keywords that compiles to Ruby"
   spec.homepage = "https://github.com/smakthe/kolom"
   spec.license = "MIT"
@@ -34,5 +34,4 @@ Gem::Specification.new do |spec|
   spec.bindir = "bin"
   spec.executables = spec.files.grep(%r{\Abin/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
-  print "Made VERSION: #{spec.version} \n"
 end

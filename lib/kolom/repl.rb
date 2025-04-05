@@ -10,7 +10,7 @@ module Kolom
     
     def start
       loop do
-        line = Readline.readline("Kolom> ", true)
+        line = Readline.readline("#{ENV["NAME"]}> ", true)
         break if line.nil? || line.strip == 'বাহির'
         
         begin
