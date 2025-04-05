@@ -14,13 +14,12 @@ module Kolom
   RUBY_KEYWORDS = KEYWORDS.invert
 
   # Load  all files in the kolom directory
-  Dir.glob(File.join(__dir__, 'kolom', '*.rb')).each do |file_path|
+  Dir.glob(File.join(__dir__, "kolom", "*.rb")).each do |file_path|
     # Construct the relative path like "kolom/filename" and require it
-    begin
-      require_relative File.join('kolom', File.basename(file_path, '.rb'))
-    rescue LoadError => e
-      warn "Failed to load #{File.join('kolom', File.basename(file_path, '.rb'))}: #{e.message}"
-    end
+
+    require_relative File.join("kolom", File.basename(file_path, ".rb"))
+  rescue LoadError => e
+    warn "Failed to load #{File.join("kolom", File.basename(file_path, ".rb"))}: #{e.message}"
   end
 
   # The Interpreter class is responsible for executing the translated Ruby code.
@@ -41,7 +40,6 @@ module Kolom
 
       # Evaluate the translated code in the DSL context
       result = dsl_context.instance_eval(ruby_code)
-
 
       # Return the result and any output
       [result, @output.string]
