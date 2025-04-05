@@ -1,15 +1,11 @@
 # frozen_string_literal: true
 
-require "dotenv"
 require "stringio"
 require "parser"
 require "unparser"
 
 # Kolom is a Ruby interpreter that allows you to write Ruby-like code using Bengali keywords.
 module Kolom
-  # Load environment variables from .env file
-  Dotenv.load
-
   VERSION = ENV["KOLUM_VERSION"] || "0.1.0"
 
   # Bengali translations of Ruby keywords

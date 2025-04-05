@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 
+# Load environment variables from .env file
+
+require "dotenv"
+Dotenv.load
+
 Gem::Specification.new do |spec|
   spec.name = "kolom"
-  spec.version = ENV["KOLUM_VERSION"] || "0.1.0"
+  spec.version = ENV["KOLUM_VERSION"]
   spec.authors = ["smakthe"]
   spec.email = ["scmakra99@gmail.com"]
 
