@@ -1,43 +1,131 @@
-# Kolom
+# Kolom Language
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/kolom`. To experiment with that code, run `bin/console` for an interactive prompt.
+Kolom is a toy scripting language that uses Bengali keywords instead of English. It's implemented as a Ruby gem and compiles to Ruby, leveraging Ruby's powerful metaprogramming capabilities.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
-
-Install the gem and add to the application's Gemfile by executing:
-
 ```bash
-bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+gem install kolom
 ```
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+Or add this line to your application's Gemfile:
+
+```ruby
+gem 'kolom'
+```
+
+And then execute:
 
 ```bash
-gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+bundle install
 ```
 
 ## Usage
 
-TODO: Write usage instructions here
+### Running Kolom Programs
 
-## Development
+You can run a Kolom script file:
 
-After checking out the repo, run `bin/setup` to install dependencies. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```bash
+kolom path/to/your/script.kl
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+Or execute Kolom code directly:
+
+```bash
+kolom -e 'লেখা("হ্যালো বিশ্ব!")'
+```
+
+### Using the REPL
+
+You can start an interactive REPL:
+
+```bash
+kolom
+```
+
+### Example Program
+
+Here's a simple example of a Kolom program:
+
+```
+# Define a class
+শ্রেণী ব্যক্তি
+  সংজ্ঞা শুরু(নাম, বয়স)
+    @নাম = নাম
+    @বয়স = বয়স
+  শেষ
+
+  সংজ্ঞা পরিচয়_দাও
+    লেখা("আমার নাম #{@নাম} এবং আমার বয়স #{@বয়স} বছর।")
+  শেষ
+শ্রেণী
+
+# Create an instance
+আমি = ব্যক্তি.নতুন("করিম", 30)
+আমি.পরিচয়_দাও
+```
+
+## Keywords and Methods
+
+Kolom provides Bengali equivalents for common Ruby keywords and methods:
+
+### Keywords
+
+| Kolom | Ruby |
+|---------|------|
+| শ্রেণী | class |
+| সংজ্ঞা | def |
+| যদি | if |
+| নইলে | else |
+| তাহলে | then |
+| কর | do |
+| জন্য | for |
+| যখন | when |
+| ও | and |
+| বা | or |
+| না | not |
+| সত্য | true |
+| মিথ্যা | false |
+| ফেরত | return |
+
+### Methods
+
+| Kolom | Ruby |
+|---------|------|
+| দৈর্ঘ্য | length |
+| উল্টো | reverse |
+| সংযোগ | concat |
+| বিভাগ | split |
+| নিবেশ | push |
+| নিরসন | pop |
+| সম্বদ্ধ | join |
+| প্রয়োগ | map |
+| প্রত্যেক | each |
+| আকার | size |
+
+## Features
+
+- Translation of Bengali keywords to Ruby equivalents
+- Support for core Ruby types (String, Array, Hash)
+- Dynamic method handling using metaprogramming
+- Interactive REPL with command history
+- Support for file-based scripts
+- Error handling and debugging
+
+## Advanced Features
+
+- Dynamic method definition
+- Method aliasing in Bengali
+- Method tracing for debugging
+- DSL support
+- Lazy evaluation using Fiber
+- Concurrent execution with Threads
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/kolom. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/kolom/blob/master/CODE_OF_CONDUCT.md).
+Bug reports and pull requests are welcome on GitHub.
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the Kolom project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/kolom/blob/master/CODE_OF_CONDUCT.md).
+The gem is available as open source under the terms of the MIT License.
