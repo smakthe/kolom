@@ -1,10 +1,9 @@
-name: Ruby Gem
+name: Release
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
-    branches: [ "master" ]
+    tags:
+      - "v*"
 
 jobs:
   build:
@@ -16,13 +15,12 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+
     - name: Set up Ruby
-    # To automatically get bug fixes and new Ruby versions for ruby/setup-ruby,
-    # change this to (see https://github.com/ruby/setup-ruby#versioning):
-    # uses: ruby/setup-ruby@v1
-      uses: ruby/setup-ruby@55283cc23133118229fd3f97f9336ee23a179fcf # v1.146.0
+      uses: ruby/setup-ruby@v1
       with:
-        ruby-version: 3.1.0
+        ruby-version: "3.1"
+        bundler-cache: true
 
     - name: Publish to RubyGems
       run: |
@@ -33,4 +31,4 @@ jobs:
         gem build *.gemspec
         gem push *.gem
       env:
-        GEM_HOST_API_KEY: "${{secrets.RUBYGEMS_API_KEY}}"
+        RUBYGEMS_API_KEY: "${{ secrets.RUBYGEMS_API_KEY }}"
