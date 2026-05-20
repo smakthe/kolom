@@ -1,10 +1,9 @@
 require "json"
 require "stringio"
+require_relative "kolom/version"
 
 # Kolom is a Ruby interpreter that allows you to write Ruby-like code using Bengali keywords.
 module Kolom
-  VERSION = ENV["KOLUM_VERSION"] || "0.1.0"
-
   # Bengali translations of Ruby keywords
   keymap_filepath = File.join(File.dirname(__FILE__), "kolom/keymap.json")
   keymap_file = File.open(keymap_filepath)
