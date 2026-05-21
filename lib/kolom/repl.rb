@@ -1,17 +1,16 @@
-require 'readline'
+require "readline"
 
 module Kolom
   class REPL
 
     def initialize
       @interpreter = Interpreter.new
-      @history = []
     end
     
     def start
       loop do
         line = Readline.readline("কলম> ", true)
-        break if line.nil? || line.strip == 'বাহির'
+        break if line.nil? || line.strip == "বাহির"
         
         begin
           result, output = @interpreter.evaluate(line)
@@ -21,11 +20,7 @@ module Kolom
           puts "Error: #{e.message}"
           puts e.backtrace.join("\n")
         end
-        
-        @history << line
-        Readline::HISTORY.push(line)
       end
-      
       puts "ধন্যবাদ!"
     end
   end
