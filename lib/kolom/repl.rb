@@ -23,6 +23,7 @@ module Kolom
         end
         
         @history << line
+        Readline::HISTORY.push(line)
       end
       
       puts "ধন্যবাদ!"

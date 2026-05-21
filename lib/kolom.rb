@@ -6,8 +6,7 @@ require_relative "kolom/version"
 module Kolom
   # Bengali translations of Ruby keywords
   keymap_filepath = File.join(File.dirname(__FILE__), "kolom/keymap.json")
-  keymap_file = File.open(keymap_filepath)
-  KEYWORDS = JSON.load(keymap_file).freeze
+  KEYWORDS = JSON.parse(File.read(keymap_filepath)).freeze
 
   # Inverse mapping for translating back
   RUBY_KEYWORDS = KEYWORDS.invert
@@ -51,7 +50,7 @@ module Kolom
       # Replace Bengali keywords with Ruby keywords
       KEYWORDS.each do |bengali, ruby|
         # We need to be careful with word boundaries
-        code = code.gsub(/\b#{bengali}\b/, ruby)
+        code = code.gsub(/(?<![[:alpha:]])#{Regexp.escape(bengali)}(?![[:alpha:]])/, ruby)
       end
 
       code
