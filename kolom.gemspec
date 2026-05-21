@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description = "A toy scripting language with Bengali keywords that compiles to Ruby"
   spec.homepage = "https://rubygems.org/gems/kolom"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 3.1.0"
+  spec.required_ruby_version = ">= 3.2.0"
 
   spec.metadata["allowed_push_host"] = "https://rubygems.org"
 
